@@ -7,4 +7,5 @@ router.post("/register",[
     check('email','El email es obligatorio').isEmail(),
     check('password','La contraseña es obligatoria').not().isEmpty(),
 ], authCtrls.register);
+router.post("/login",authCtrls.login);
 export default router

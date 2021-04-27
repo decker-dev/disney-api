@@ -1,3 +1,4 @@
 import app from './app';
-app.listen(3000)
-console.log('server on')
+import config from '../config'
+app.listen(config.api.port)
+console.log('server on',config.api.port)

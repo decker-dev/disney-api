@@ -4,6 +4,7 @@ import pkg from "../package.json";
 import characterRoutes from "./routes/character.routes.js";
 import authrRoutes from "./routes/auth.routes.js";
 import { success, error } from "./utils/response";
+import {checkToken} from "./middleware/checkToken"
 const app = express();
 require("./database/database");
 
@@ -24,7 +25,7 @@ app.get("/", (req, res) => {
     200
   );
 });
-app.use("/character", characterRoutes);
+app.use("/character",checkToken, characterRoutes);
 app.use("/auth", authrRoutes);
 
 export default app;
