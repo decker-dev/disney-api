@@ -5,8 +5,17 @@ import characterRoutes from "./routes/character.routes.js";
 import filmRoutes from "./routes/films.routes.js";
 import authrRoutes from "./routes/auth.routes.js";
 import { success, error } from "./utils/response";
-import {checkToken} from "./middleware/checkToken"
+import {checkToken} from "./middleware/checkToken";
+import cors from "cors";
 const app = express();
+app.use(cors(), function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+      "Allow-Control-Allow-Header",
+      "Origin,X-Requested-With,Content-Type,Accept"
+  );
+  next();
+})
 require('dotenv').config()
 require("./database/database");
 

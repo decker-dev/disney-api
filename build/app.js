@@ -21,9 +21,16 @@ var _response = require("./utils/response");
 
 var _checkToken = require("./middleware/checkToken");
 
+var _cors = _interopRequireDefault(require("cors"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express.default)();
+app.use((0, _cors.default)(), function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Allow-Control-Allow-Header", "Origin,X-Requested-With,Content-Type,Accept");
+  next();
+});
 
 require('dotenv').config();
 
