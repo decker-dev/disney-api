@@ -1,6 +1,8 @@
+import films from './films'
 module.exports= (sequelize, Datatypes) => {
-  return sequelize.define(
-    "character",
+
+  const  character = sequelize.define(
+    "characters",
     {
       id: {
         type: Datatypes.INTEGER,
@@ -22,10 +24,8 @@ module.exports= (sequelize, Datatypes) => {
       history: {
         type: Datatypes.STRING,
       },
-      Filmography: {
-        type: Datatypes.STRING,
-      },
     },
     {}
   );
+  return character
 };

@@ -1,5 +1,5 @@
 module.exports= (sequelize, Datatypes) => {
-  return sequelize.define(
+  const films = sequelize.define(
     "Films",
     {
       id: {
@@ -25,4 +25,5 @@ module.exports= (sequelize, Datatypes) => {
     },
     {}
   );
+  return films
 };
