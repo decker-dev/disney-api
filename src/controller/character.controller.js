@@ -14,13 +14,13 @@ export const getCharacterById = async (req, res) => {
 };
 export const createCharacter = async (req, res) => {
   await Character.create(req.body);
-  success(req, res, "Se a creado el usuario", 200);
+  success(req, res, "Se agrego el personaje", 200);
 };
 export const updateCharacterById = async (req, res) => {
   await Character.update(req.body, {
     where: { id: req.params.id },
   });
-  success(req, res, "Se actualizo el usuario", 200);
+  success(req, res, "Se actualizo el personaje", 200);
 };
 export const deleteCharacterById = async (req, res) => {
   await Character.destroy({

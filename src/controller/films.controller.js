@@ -14,18 +14,18 @@ export const getFilmById = async (req, res) => {
 };
 export const createFilm = async (req, res) => {
   await Film.create(req.body);
-  success(req, res , "Se a creado el usuario",200)
+  success(req, res , "Se creo la pelicula",200)
 };
 export const updateFilmById = async (req, res) => {
   await Film.update(req.body, {
     where: { id: req.params.id },
   });
-  success(req, res , "Se actualizo el usuario",200)
+  success(req, res , "Se actualizo la pelicula",200)
 
 };
 export const deleteFilmById = async (req, res) => {
   await Film.destroy({
     where: { id: req.params.id },
   });
-  success(req, res , "Se ha borrado el personaje",200)
+  success(req, res , "Se borro la pelicula",200)
 };
