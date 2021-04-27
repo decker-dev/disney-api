@@ -5,7 +5,7 @@ import filmModel from "./models/films";
 require('dotenv').config()
 const sequelize = new Sequelize(process.env.NAME_BD, process.env.USER_BD, process.env.PASS_BD, {
   
-  host: process.env.DB_HOST,
+  host: process.env.HOST_BD,
   port: process.env.DB_PORT,
   dialect: "mysql",
 });

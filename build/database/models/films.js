@@ -22,8 +22,6 @@ module.exports = (sequelize, Datatypes) => {
     genre: {
       type: Datatypes.STRING
     }
-  }, {
-    timestamps: false
-  });
+  }, {});
   return films;
 };

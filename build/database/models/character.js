@@ -26,8 +26,6 @@ module.exports = (sequelize, Datatypes) => {
     history: {
       type: Datatypes.STRING
     }
-  }, {
-    timestamps: false
-  });
+  }, {});
   return character;
 };
