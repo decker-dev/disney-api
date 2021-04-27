@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import pkg from "../package.json";
 import characterRoutes from "./routes/character.routes.js";
+import filmRoutes from "./routes/films.routes.js";
 import authrRoutes from "./routes/auth.routes.js";
 import { success, error } from "./utils/response";
 import {checkToken} from "./middleware/checkToken"
@@ -28,5 +29,5 @@ app.get("/", (req, res) => {
 });
 app.use("/character",checkToken, characterRoutes);
 app.use("/auth", authrRoutes);
-
+app.use("/films", filmRoutes);
 export default app;

@@ -1,36 +1,30 @@
 import { Character } from "../database/database";
-import {success,error} from "../utils/response"
+import { success, error } from "../utils/response";
 export const getCharacter = async (req, res) => {
   const character = await Character.findAll({
-      attributes:['name','picture']
+    attributes: ["name", "picture"],
   });
-  success(req, res , character,200)
+  success(req, res, character, 200);
 };
 export const getCharacterById = async (req, res) => {
   const character = await Character.findAll({
     where: { id: req.params.id },
   });
-  res.json(character);
+  success(req, res, character, 200);
 };
 export const createCharacter = async (req, res) => {
   await Character.create(req.body);
-  res.status(200).json({
-    message: "Se a creado el usuario",
-  });
+  success(req, res, "Se a creado el usuario", 200);
 };
 export const updateCharacterById = async (req, res) => {
   await Character.update(req.body, {
     where: { id: req.params.id },
   });
-  res.status(200).json({
-    message: "Se actualizo el usuario",
-  });
+  success(req, res, "Se actualizo el usuario", 200);
 };
 export const deleteCharacterById = async (req, res) => {
   await Character.destroy({
     where: { id: req.params.id },
   });
-  res.json({
-    message: "Se ha borrado el personaje",
-  });
+  success(req, res, "Se ha borrado el personaje", 200);
 };
