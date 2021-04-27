@@ -6,6 +6,7 @@ import authrRoutes from "./routes/auth.routes.js";
 import { success, error } from "./utils/response";
 import {checkToken} from "./middleware/checkToken"
 const app = express();
+require('dotenv').config()
 require("./database/database");
 
 app.set("pkg", pkg);

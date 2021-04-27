@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import { validationResult } from "express-validator";
 import { User } from "../database/database";
 import { success, error } from "../utils/response";
-import config from "../../config"
 import moment from "moment";
 import jwt from "jwt-simple"
 export const register = async (req, res) => {
@@ -41,5 +40,5 @@ const createToken=(user)=>{
     expiresAt : moment().add(1,'days').unix()
 
   }
-  return jwt.encode(payload,config.key.secret)
+  return jwt.encode(process.env.SECRET_KEY)
 }

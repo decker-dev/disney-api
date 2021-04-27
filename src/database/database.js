@@ -1,9 +1,12 @@
 import Sequelize from "sequelize";
 import userModel from "./models/user";
 import characterModel from "./models/character";
+require('dotenv').config()
+//const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS,{
 
-const sequelize = new Sequelize("disney", "root", "password", {
-  host: "localhost",
+const sequelize = new Sequelize(process.env.NAME_BD, process.env.USER_BD, process.env.PASS_BD, {
+  
+  host: process.env.DB_HOST,
   dialect: "mysql",
 });
 

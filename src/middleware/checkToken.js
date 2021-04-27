@@ -1,6 +1,5 @@
 import jwt from "jwt-simple";
 import { success, error } from "../utils/response";
-import config from "../../config";
 import moment from "moment";
 export const checkToken = async (req, res, next) => {
   if (!req.headers["user-token"]) {
@@ -14,7 +13,7 @@ export const checkToken = async (req, res, next) => {
   const userToken = req.headers["user-token"];
   let payload = {};
   try {
-    payload = jwt.decode(userToken, config.key.secret);
+    payload = jwt.decode(userToken, process.env.SECRET_KEY);
   } catch (err) {
     return error(req, res, "el token es incorrecto", 401);
   }

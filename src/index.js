@@ -1,4 +1,4 @@
 import app from './app';
-import config from '../config'
-app.listen(config.api.port)
-console.log('server on',config.api.port)
+//import config from '../config'
+app.listen(process.env.PORT)
+console.log('server on',process.env.PORT)
