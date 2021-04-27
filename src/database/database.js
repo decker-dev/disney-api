@@ -5,9 +5,9 @@ const sequelize = new Sequelize ('disney','root','password',{
     dialect: 'mysql'
 })
 
-const character =characterModel(sequelize,Sequelize)
+const Character =characterModel(sequelize,Sequelize)
 sequelize.sync({forse:false})
 .then(()=>{
     console.log("sync")
 })
-module.exports ={character}
+module.exports ={Character}
