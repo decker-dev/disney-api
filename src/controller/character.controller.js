@@ -1,4 +1,4 @@
-import { Character } from "../database/database";
+import { Character, Film } from "../database/database";
 import { success, error } from "../utils/response";
 export const getCharacter = async (req, res) => {
   const character = await Character.findAll({
@@ -7,10 +7,11 @@ export const getCharacter = async (req, res) => {
   success(req, res, character, 200);
 };
 export const getCharacterById = async (req, res) => {
-  const character = await Character.findAll({
-    where: { id: req.params.id },
+  Character.findByPk(req.params.id).then((character) => {
+    character.getFilms().then((film) => {
+      success(req, res, { character,film }, 200);
+    });
   });
-  success(req, res, character, 200);
 };
 export const createCharacter = async (req, res) => {
   await Character.create(req.body);

@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     200
   );
 });
-app.use("/character",checkToken, characterRoutes);
+app.use("/character", characterRoutes);
 app.use("/auth", authrRoutes);
-app.use("/films",checkToken, filmRoutes);
+app.use("/films", filmRoutes);
 export default app;

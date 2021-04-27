@@ -13,5 +13,7 @@ module.exports= (sequelize, Datatypes) => {
             type: Datatypes.STRING(150),
 
           },
+    },{
+      timestamps: false
     })
 }

@@ -1,4 +1,4 @@
-import { Film } from "../database/database";
+import { Film,Character } from "../database/database";
 import {success,error} from "../utils/response"
 export const getFilms = async (req, res) => {
   const film = await Film.findAll({
@@ -7,10 +7,12 @@ export const getFilms = async (req, res) => {
   success(req, res , film,200)
 };
 export const getFilmById = async (req, res) => {
-  const film = await Film.findAll({
-    where: { id: req.params.id },
-  });
-  success(req, res , film,200)
+  
+  Film.findByPk(req.params.id).then(film => {
+    film.getCharacters({ attributes: ['picture', 'name','age','weight','history'] }).then(character => {
+      success(req, res, {film,character}, 200);
+    })
+});
 };
 export const createFilm = async (req, res) => {
   await Film.create(req.body);
