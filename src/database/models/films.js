@@ -1,6 +1,6 @@
-export default (sequelize, Datatypes) => {
-  const cinematography = sequelize.define(
-    "cinematography",
+module.exports= (sequelize, Datatypes) => {
+  return sequelize.define(
+    "Films",
     {
       id: {
         type: Datatypes.INTEGER,
@@ -10,20 +10,22 @@ export default (sequelize, Datatypes) => {
       picture: {
         type: Datatypes.STRING,
       },
-      title: {
+      name: {
         type: Datatypes.STRING,
       },
-      creation_date: {
+      age: {
         type: Datatypes.STRING,
       },
-      stars: {
+      weight: {
         type: Datatypes.STRING,
       },
-      genre: {
+      history: {
         type: Datatypes.STRING,
-      }
+      },
+      Filmography: {
+        type: Datatypes.STRING,
+      },
     },
     {}
   );
-  return cinematography;
 };
