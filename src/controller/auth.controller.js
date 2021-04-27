@@ -4,6 +4,7 @@ import { User } from "../database/database";
 import { success, error } from "../utils/response";
 import moment from "moment";
 import jwt from "jwt-simple"
+require('dotenv').config()
 export const register = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -40,5 +41,5 @@ const createToken=(user)=>{
     expiresAt : moment().add(1,'days').unix()
 
   }
-  return jwt.encode(process.env.SECRET_KEY)
+  return jwt.encode(payload,process.env.SECRET_KEY)
 }

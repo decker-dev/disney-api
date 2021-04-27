@@ -10,21 +10,18 @@ module.exports= (sequelize, Datatypes) => {
       picture: {
         type: Datatypes.STRING,
       },
-      name: {
+      title: {
         type: Datatypes.STRING,
       },
-      age: {
+      creation_date: {
         type: Datatypes.STRING,
       },
-      weight: {
+      stars: {
         type: Datatypes.STRING,
       },
-      history: {
+      genre: {
         type: Datatypes.STRING,
-      },
-      Filmography: {
-        type: Datatypes.STRING,
-      },
+      }
     },
     {}
   );

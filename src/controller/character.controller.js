@@ -4,7 +4,7 @@ export const getCharacter = async (req, res) => {
   const character = await Character.findAll({
       attributes:['name','picture']
   });
-  res.json(character);
+  success(req, res , character,200)
 };
 export const getCharacterById = async (req, res) => {
   const character = await Character.findAll({
