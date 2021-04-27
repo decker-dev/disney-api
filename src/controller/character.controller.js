@@ -1,4 +1,5 @@
 import { Character } from "../database/database";
+import {success,error} from "../utils/response"
 export const getCharacter = async (req, res) => {
   const character = await Character.findAll({
       attributes:['name','picture']

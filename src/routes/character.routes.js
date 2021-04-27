@@ -1,6 +1,5 @@
 import { Router } from "express";
 import * as characterCtrls from "../controller/character.controller";
-
 const router = Router();
 
 router.get("/", characterCtrls.getCharacter);
