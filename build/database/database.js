@@ -18,6 +18,7 @@ require('dotenv').config();
 
 var sequelize = new _sequelize.default(process.env.NAME_BD, process.env.USER_BD, process.env.PASS_BD, {
   host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   dialect: "mysql"
 });
 var Character = (0, _character.default)(sequelize, _sequelize.default);
