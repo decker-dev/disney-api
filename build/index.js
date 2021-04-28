@@ -10,3 +10,4 @@ require('dotenv').config();
 _app.default.listen(process.env.PORT);
 
 console.log('server on', process.env.PORT);
+module.exports = _app.default;

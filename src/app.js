@@ -6,7 +6,9 @@ import filmRoutes from "./routes/films.routes.js";
 import authrRoutes from "./routes/auth.routes.js";
 import { success, error } from "./utils/response";
 import {checkToken} from "./middleware/checkToken";
+const swaggerUi = require('swagger-ui-express');
 import cors from "cors";
+const swaggerDocument = require('./swagger.json');
 const app = express();
 app.use(cors(), function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -18,9 +20,12 @@ app.use(cors(), function (req, res, next) {
 })
 require('dotenv').config()
 require("./database/database");
-
+var options = {
+  explorer: true
+};
 app.set("pkg", pkg);
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
@@ -32,6 +37,7 @@ app.get("/", (req, res) => {
       author: app.get("pkg").author,
       description: app.get("pkg").description,
       version: app.get("pkg").version,
+      docs: app.get("pkg").docs,
     },
     200
   );

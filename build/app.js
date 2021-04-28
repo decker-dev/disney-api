@@ -25,6 +25,10 @@ var _cors = _interopRequireDefault(require("cors"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var swaggerUi = require('swagger-ui-express');
+
+var swaggerDocument = require('./swagger.json');
+
 var app = (0, _express.default)();
 app.use((0, _cors.default)(), function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -36,15 +40,20 @@ require('dotenv').config();
 
 require("./database/database");
 
+var options = {
+  explorer: true
+};
 app.set("pkg", _package.default);
 app.use(_express.default.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 app.use((0, _morgan.default)("dev"));
 app.get("/", (req, res) => {
   (0, _response.success)(req, res, {
     name: app.get("pkg").name,
     author: app.get("pkg").author,
     description: app.get("pkg").description,
-    version: app.get("pkg").version
+    version: app.get("pkg").version,
+    docs: app.get("pkg").docs
   }, 200);
 });
 app.use("/character", _checkToken.checkToken, _characterRoutes.default);
