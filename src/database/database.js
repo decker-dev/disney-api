@@ -29,7 +29,7 @@ sequelize.sync({ forse: false }).then(() => {
 let film1=await  Film.create( {
 
   picture:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Avengers_Endgame_Logo_Black.svg/220px-Avengers_Endgame_Logo_Black.svg.png",
-  title:"Avengers: Endgame",
+  title:"Avengers",
   creation_date:"22 de abril de 2019",
   stars:"5",
   genre:"Acción",
