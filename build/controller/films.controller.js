@@ -52,7 +52,7 @@ exports.getFilmById = getFilmById;
 var createFilm = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator(function* (req, res) {
     yield _database.Film.create(req.body);
-    (0, _response.success)(req, res, "Se creo la pelicula", 200);
+    (0, _response.success)(req, res, "Se creo una Pelicula/Serie", 200);
   });
 
   return function createFilm(_x5, _x6) {
@@ -69,7 +69,7 @@ var updateFilmById = /*#__PURE__*/function () {
         id: req.params.id
       }
     });
-    (0, _response.success)(req, res, "Se actualizo la pelicula", 200);
+    (0, _response.success)(req, res, "Se actualizo una Pelicula/Serie", 200);
   });
 
   return function updateFilmById(_x7, _x8) {
@@ -86,7 +86,7 @@ var deleteFilmById = /*#__PURE__*/function () {
         id: req.params.id
       }
     });
-    (0, _response.success)(req, res, "Se borro la pelicula", 200);
+    (0, _response.success)(req, res, "Se borro una Pelicula/Serie", 200);
   });
 
   return function deleteFilmById(_x9, _x10) {
