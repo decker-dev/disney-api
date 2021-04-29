@@ -3,6 +3,7 @@ import * as characterCtrls from "../controller/character.controller";
 const router = Router();
 
 router.get("/", characterCtrls.getCharacter);
+router.get("/filter", characterCtrls.filterCharacter);
 router.get("/:id", characterCtrls.getCharacterById);
 router.post("/", characterCtrls.createCharacter);
 router.put("/:id", characterCtrls.updateCharacterById);
