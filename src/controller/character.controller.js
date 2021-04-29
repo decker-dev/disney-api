@@ -30,11 +30,6 @@ export const deleteCharacterById = async (req, res) => {
   success(req, res, "Se ha borrado el personaje", 200);
 };
 export const filterCharacter = async (req, res) => {
-/*
-  const todo= await Character.findAll({ include: Film })
-  res.json(todo)
-  Left join
-  */
   const { edad, peso, peliculas } = req.query;
   let paramsC = {}
   if(edad)
@@ -59,3 +54,13 @@ export const filterCharacter = async (req, res) => {
   }
 
 };
+export const searchNameCharacter = async (req, res) => {
+  const character = await Character.findAll({
+    where: { name: req.params.name },
+  });
+  if (Object.entries(character).length === 0) {
+    error(req, res, "No hay personajes con ese nombre", 404);
+  } else {
+    success(req, res, character, 200);
+  }
+}

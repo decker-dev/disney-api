@@ -289,6 +289,105 @@
         ]
       }
     },
+    "/character/filter": {
+      "get": {
+        "tags": [
+          "character"
+        ],
+        "summary": "Podes filtrar un personaje por edad, peso, peliculas/series relacionadas",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "edad",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "peso",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "peliculas",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Objeto Personaje Filtrado",
+            "schema": {
+              "$ref": "#/definitions/character"
+            }
+          },
+          "404": {
+            "description": "No hay Personaje que cumplan con ese filtro"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/character/search/{name}": {
+      "get": {
+        "tags": [
+          "character"
+        ],
+        "summary": "Busca por nombre de personaje",
+        "description": "",
+        "operationId": "searchNameCharacter",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "description": "nombre del personaje a retornar",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/character"
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/film": {
       "get": {
         "tags": [
@@ -537,6 +636,140 @@
         "responses": {
           "200": {
             "description": "Se borro una Pelicula/Serie"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/search/{title}": {
+      "get": {
+        "tags": [
+          "film"
+        ],
+        "summary": "Busca por nombre de la pelicula",
+        "description": "",
+        "operationId": "searchTitle",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "path",
+            "description": "Titulo de la Pelicula/Serie a retornar",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Films"
+            }
+          },
+          "404": {
+            "description": "No hay peliculas o series con este titulo"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/genre/{genre}": {
+      "get": {
+        "tags": [
+          "film"
+        ],
+        "summary": "Busca por genero de pelicula/serie",
+        "operationId": "searchWithGenre",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "genre",
+            "in": "path",
+            "description": "Genero de la Pelicula/Serie a retornar",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Films"
+            }
+          },
+          "404": {
+            "description": "No hay peliculas o series con este genero"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/order/{order}": {
+      "get": {
+        "tags": [
+          "film"
+        ],
+        "summary": "Detalle de una Pelicula/Serie",
+        "description": "",
+        "operationId": "orderFilms",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "in": "path",
+            "description": "Forman en la que ordenarla Pelicula/Serie (ASC/DESC)",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Films"
+            }
+          },
+          "400": {
+            "description": "El orden que elegio es incorrecto use asc o desc"
           }
         },
         "security": [

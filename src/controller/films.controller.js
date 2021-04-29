@@ -1,4 +1,4 @@
-import { Film, Character } from "../database/database";
+import { Film } from "../database/database";
 import { success, error } from "../utils/response";
 export const getFilms = async (req, res) => {
   const film = await Film.findAll({
