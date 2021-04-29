@@ -1,6 +1,6 @@
 {
   "name": "disney-api",
-  "version": "1.0.0",
+  "version": "1.0.31",
   "description": "CHALLENGE NODE",
   "main": "index.js",
   "docs": "https://disney-api-challenge.herokuapp.com/api-docs",

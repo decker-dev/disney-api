@@ -41,7 +41,7 @@ sequelize.sync({
   let film1=await  Film.create( {
   
     picture:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Avengers_Endgame_Logo_Black.svg/220px-Avengers_Endgame_Logo_Black.svg.png",
-    title:"Avengers: Endgame",
+    title:"Avengers",
     creation_date:"22 de abril de 2019",
     stars:"5",
     genre:"Acción",
@@ -50,14 +50,14 @@ sequelize.sync({
           picture:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg/220px-Robert_Downey_Jr_2014_Comic_Con_%28cropped%29.jpg",
           name:"Robert John Downey Jr",
           age:"56",
-          weight:" 0",
+          weight:"0",
           history:"es un actor, actor de voz, productor y cantante estadounidense. Inició su carrera como actor a temprana edad apareciendo en varios filmes dirigidos por su padre, Robert Downey Sr.",
       },
       {
           picture:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Karen_Gillan_%2834833524262%29_%28cropped%29.jpg/220px-Karen_Gillan_%2834833524262%29_%28cropped%29.jpg",
           name:"Karen Gillan",
           age:"33",
-          weight:" 0",
+          weight:"0",
           history:"es una actriz y modelo escocesa, conocida por interpretar el papel de Amy Pond en la serie de ciencia ficción británica Doctor Who",
       },
     

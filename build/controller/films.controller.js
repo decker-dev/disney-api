@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteFilmById = exports.updateFilmById = exports.createFilm = exports.getFilmById = exports.getFilms = void 0;
+exports.orderFilms = exports.searchWithGenre = exports.searchTitle = exports.deleteFilmById = exports.updateFilmById = exports.createFilm = exports.getFilmById = exports.getFilms = void 0;
 
 var _database = require("../database/database");
 
@@ -16,7 +16,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var getFilms = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(function* (req, res) {
     var film = yield _database.Film.findAll({
-      attributes: ['title', 'picture', 'title']
+      attributes: ["title", "picture", "title"]
     });
     (0, _response.success)(req, res, film, 200);
   });
@@ -32,13 +32,17 @@ var getFilmById = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(function* (req, res) {
     _database.Film.findByPk(req.params.id).then(film => {
       film.getCharacters({
-        attributes: ['picture', 'name', 'age', 'weight', 'history']
+        attributes: ["picture", "name", "age", "weight", "history"]
       }).then(character => {
         (0, _response.success)(req, res, {
           film,
           character
         }, 200);
+      }).catch(err => {
+        (0, _response.error)(req, res, "La id que envio no es valida", 400);
       });
+    }).catch(err => {
+      (0, _response.error)(req, res, "La id que envio no es un numero o no es valida", 400);
     });
   });
 
@@ -95,3 +99,76 @@ var deleteFilmById = /*#__PURE__*/function () {
 }();
 
 exports.deleteFilmById = deleteFilmById;
+
+var searchTitle = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator(function* (req, res) {
+    var film = yield _database.Film.findAll({
+      where: {
+        title: req.params.title
+      }
+    });
+
+    if (Object.entries(film).length === 0) {
+      (0, _response.error)(req, res, "No hay peliculas o series con este titulo", 404);
+    } else {
+      (0, _response.success)(req, res, film, 200);
+    }
+  });
+
+  return function searchTitle(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.searchTitle = searchTitle;
+
+var searchWithGenre = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator(function* (req, res) {
+    var film = yield _database.Film.findAll({
+      where: {
+        genre: req.params.genre
+      }
+    });
+
+    if (Object.entries(film).length === 0) {
+      (0, _response.error)(req, res, "No hay peliculas de ese genero", 404);
+    } else {
+      (0, _response.success)(req, res, film, 200);
+    }
+  });
+
+  return function searchWithGenre(_x13, _x14) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
+exports.searchWithGenre = searchWithGenre;
+
+var orderFilms = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator(function* (req, res) {
+    switch (req.params.test) {
+      case "asc":
+        var filmasc = yield _database.Film.findAll({
+          order: [['id', 'ASC']]
+        });
+        (0, _response.success)(req, res, filmasc, 200);
+        break;
+
+      case "desc":
+        var filmdesc = yield _database.Film.findAll({
+          order: [['id', 'DESC']]
+        });
+        (0, _response.success)(req, res, filmdesc, 200);
+        break;
+
+      default:
+        (0, _response.error)(req, res, "El orden que elegio es incorrecto use asc o desc", 400);
+    }
+  });
+
+  return function orderFilms(_x15, _x16) {
+    return _ref8.apply(this, arguments);
+  };
+}();
+
+exports.orderFilms = orderFilms;

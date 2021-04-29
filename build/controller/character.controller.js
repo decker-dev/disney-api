@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteCharacterById = exports.updateCharacterById = exports.createCharacter = exports.getCharacterById = exports.getCharacter = void 0;
+exports.searchNameCharacter = exports.filterCharacter = exports.deleteCharacterById = exports.updateCharacterById = exports.createCharacter = exports.getCharacterById = exports.getCharacter = void 0;
 
 var _database = require("../database/database");
 
@@ -93,3 +93,60 @@ var deleteCharacterById = /*#__PURE__*/function () {
 }();
 
 exports.deleteCharacterById = deleteCharacterById;
+
+var filterCharacter = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator(function* (req, res) {
+    var {
+      edad,
+      peso,
+      peliculas
+    } = req.query;
+    var paramsC = {};
+    if (edad) paramsC['age'] = edad;
+    if (peso) paramsC['weight'] = peso;
+    var paramsF = {};
+    if (peliculas) paramsF['title'] = peliculas;
+    var character = yield _database.Character.findAll({
+      include: [{
+        model: _database.Film,
+        required: true,
+        where: paramsF
+      }],
+      where: paramsC
+    });
+
+    if (Object.entries(character).length === 0) {
+      (0, _response.error)(req, res, "No hay Personaje que cumplan con ese filtro", 404);
+    } else {
+      (0, _response.success)(req, res, character, 200);
+    }
+  });
+
+  return function filterCharacter(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.filterCharacter = filterCharacter;
+
+var searchNameCharacter = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator(function* (req, res) {
+    var character = yield _database.Character.findAll({
+      where: {
+        name: req.params.name
+      }
+    });
+
+    if (Object.entries(character).length === 0) {
+      (0, _response.error)(req, res, "No hay personajes con ese nombre", 404);
+    } else {
+      (0, _response.success)(req, res, character, 200);
+    }
+  });
+
+  return function searchNameCharacter(_x13, _x14) {
+    return _ref7.apply(this, arguments);
+  };
+}();
+
+exports.searchNameCharacter = searchNameCharacter;
